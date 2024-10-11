@@ -46,9 +46,15 @@ a {
   position: relative;
   z-index: 100000;
 }
-.logo-wrapper.answer-logo-wrapper {
+.answer-logo-wrapper {
+  position: fixed; /* Ensure it stays in a fixed position */
+  top: 20px; /* Adjust these values as needed */
+  left: 20px;
   z-index: 10000 !important;
+  opacity: 1 !important;
+  transition: none !important; /* No transition for opacity */
 }
+
 .logo-wrapper.answer-logo-wrapper .trasaterra-logo {
   width: 75px;
 }
@@ -79,7 +85,7 @@ a {
   display: block;
   width: 15px; /* Shrink width to 20px */
   height: 15px; /* Shrink height to 20px */
-  background-image: url("../img/arrow-right.svg"); /* Your background image */
+  background-image: url("https://trasaterra.github.io/branded-ai-trasa/img/arrow-right.svg"); /* Your background image */
   background-size: contain;
   background-repeat: no-repeat;
   position: absolute;
@@ -116,7 +122,7 @@ a {
 /* File upload icon (clip icon) */
 .input-group .file-upload-icon {
   cursor: pointer;
-  background: url("../img/hook.svg") no-repeat center;
+  background: url("https://trasaterra.github.io/branded-ai-trasa/img/hook.svg") no-repeat center;
   background-size: 35px 35px;
   width: 50px;
   height: 50px;
@@ -134,7 +140,7 @@ a {
 
 /* Submit button with upload icon */
 .input-group .upload-btn {
-  background: url("../img/upload.svg") no-repeat center;
+  background: url("https://trasaterra.github.io/branded-ai-trasa/img/upload.svg") no-repeat center;
   background-size: 20px 20px;
   width: 40px;
   height: 40px;
@@ -154,7 +160,7 @@ a {
 .input-group .upload-btn:focus {
   outline: none;
   box-shadow: none;
-  background: url("../img/anchor.svg") no-repeat center; /* Change to anchor icon on focus */
+  background: url("https://trasaterra.github.io/branded-ai-trasa/img/anchor.svg") no-repeat center; /* Change to anchor icon on focus */
   background-size: 20px 20px;
   background-color: transparent;
   border: none;
@@ -212,14 +218,11 @@ textarea.form-control:focus {
   background-position: center;
   background-repeat: no-repeat;
   opacity: 1; /* Make sure it starts fully visible */
-  transition: opacity 1s ease-in-out; /* Smooth transition for fade-in */
+  transition: opacity .5s ease-in-out; /* Smooth transition for fade-in */
   z-index: -1; /* Ensure it's behind other content */
 }
 
-.answer-window {
-  position: relative;
-  z-index: 1; /* Ensure content is above the background */
-}
+
 
 .answer-window {
   position: fixed;
@@ -229,33 +232,49 @@ textarea.form-control:focus {
   left: 0;
   right: 0;
   z-index: 1;
-  background-color: #2A2363; /* Fallback color in case the image doesn't load */
-  background-size: cover;
-  background-position: center;
-  background-color: transparent;
+  background-color: #2A2363; /* Fallback color */
   color: #FCFBF8;
-  transition: background-image 0s, opacity 0.25s ease-in-out; /* Transition for opacity */
-  opacity: 0; /* Start with the element hidden */
+  transition: opacity 0.25s ease-in-out;
 }
 
-.answer-window.fade-in {
-  opacity: 1; /* Fade in to full opacity */
-}
-
-.answer-window::before {
+/* Background layers */
+.answer-window::before,
+.answer-window::after {
   content: "";
   position: absolute;
-  top: -20%; /* Expand the area to avoid blurred edges */
+  top: -20%;
   right: -20%;
   bottom: -20%;
   left: -20%;
-  background-size: 160%; /* Increase background size to "zoom in" further */
-  background-position: center; /* Center the image */
+  background-size: 160%;
+  background-position: center;
   background-repeat: no-repeat;
-  background-image: var(--background-image);
-  filter: blur(60px); /* Apply the blur */
-  z-index: -1; /* Keep the pseudo-element behind the content */
+  filter: blur(60px); /* Apply the blur effect */
+  z-index: -1; /* Behind the content */
+  transition: opacity 1s ease-in-out;
+  opacity: 0;
 }
+
+.answer-window::before {
+  background-image: var(--previous-background, none); /* Previous background */
+}
+
+.answer-window::after {
+  background-image: var(--new-background, none); /* New background */
+}
+
+/* Fade-in the new background */
+.answer-window.fade-in::after {
+  opacity: 1;
+}
+
+/* Fade-out the previous background */
+.answer-window.fade-out::before {
+  opacity: 0;
+}
+
+
+
 
 #answerCarousel {
   height: 100vh;
@@ -284,7 +303,7 @@ textarea.form-control:focus {
 
 /* Replace the default carousel control icons with custom SVGs */
 .carousel-control-prev-icon {
-  background-image: url("/img/white-arrow-prev.svg");
+  background-image: url("https://trasaterra.github.io/branded-ai-trasa/img/white-arrow-prev.svg") !important;
   background-size: contain;
   background-repeat: no-repeat;
   width: 3rem;
@@ -292,7 +311,7 @@ textarea.form-control:focus {
 }
 
 .carousel-control-next-icon {
-  background-image: url("/img/white-arrow-next.svg");
+  background-image: url("https://trasaterra.github.io/branded-ai-trasa/img/white-arrow-next.svg") !important;
   background-size: contain;
   background-repeat: no-repeat;
   width: 3rem;

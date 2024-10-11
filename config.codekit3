@@ -17,6 +17,14 @@
       "oAP" : "\/answer.html",
       "oF" : 0
     },
+    "\/build\/.gitignore" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/build\/.gitignore",
+      "oF" : 0
+    },
     "\/css\/custom.css" : {
       "aP" : 1,
       "bl" : 0,
@@ -26,6 +34,18 @@
       "ma" : 0,
       "oA" : 0,
       "oAP" : "\/css\/custom-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/custom-min.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/custom-min-min.css",
       "oF" : 0,
       "pg" : 0
     },
@@ -70,84 +90,6 @@
       "opt" : 0,
       "plM" : 52780316221407,
       "prP" : 0
-    },
-    "\/img\/backgrounds\/background-1.jpg" : {
-      "ft" : 16384,
-      "iS" : 296512,
-      "jF" : 0,
-      "oA" : 0,
-      "oAP" : "\/img\/backgrounds\/background-1.jpg",
-      "oF" : 0,
-      "oIPL" : 0,
-      "opt" : 0,
-      "ou" : "lpckwebp-none",
-      "q" : 100,
-      "rq" : 75
-    },
-    "\/img\/backgrounds\/background-2.jpg" : {
-      "ft" : 16384,
-      "iS" : 170722,
-      "jF" : 0,
-      "oA" : 0,
-      "oAP" : "\/img\/backgrounds\/background-2.jpg",
-      "oF" : 0,
-      "oIPL" : 0,
-      "opt" : 0,
-      "ou" : "lpckwebp-none",
-      "q" : 100,
-      "rq" : 75
-    },
-    "\/img\/backgrounds\/background-3.jpg" : {
-      "ft" : 16384,
-      "iS" : 365026,
-      "jF" : 0,
-      "oA" : 0,
-      "oAP" : "\/img\/backgrounds\/background-3.jpg",
-      "oF" : 0,
-      "oIPL" : 0,
-      "opt" : 0,
-      "ou" : "lpckwebp-none",
-      "q" : 100,
-      "rq" : 75
-    },
-    "\/img\/backgrounds\/background-4.jpg" : {
-      "ft" : 16384,
-      "iS" : 215910,
-      "jF" : 0,
-      "oA" : 0,
-      "oAP" : "\/img\/backgrounds\/background-4.jpg",
-      "oF" : 0,
-      "oIPL" : 0,
-      "opt" : 0,
-      "ou" : "lpckwebp-none",
-      "q" : 100,
-      "rq" : 75
-    },
-    "\/img\/backgrounds\/background-5.jpg" : {
-      "ft" : 16384,
-      "iS" : 35468,
-      "jF" : 0,
-      "oA" : 0,
-      "oAP" : "\/img\/backgrounds\/background-5.jpg",
-      "oF" : 0,
-      "oIPL" : 0,
-      "opt" : 0,
-      "ou" : "lpckwebp-none",
-      "q" : 100,
-      "rq" : 75
-    },
-    "\/img\/backgrounds\/background-6.jpg" : {
-      "ft" : 16384,
-      "iS" : 75152,
-      "jF" : 0,
-      "oA" : 0,
-      "oAP" : "\/img\/backgrounds\/background-6.jpg",
-      "oF" : 0,
-      "oIPL" : 0,
-      "opt" : 0,
-      "ou" : "lpckwebp-none",
-      "q" : 100,
-      "rq" : 75
     },
     "\/img\/beige-starburst.svg" : {
       "ft" : 2097152,
@@ -584,7 +526,7 @@
     "displayValueWasSetByUser" : 0,
     "iconImageName" : "brackets-rose",
     "iconImageWasSetByUser" : 0,
-    "lastBuiltDate" : 750014411.09272599
+    "lastBuiltDate" : 750374196.39121199
   },
   "projectSettings" : {
     "abortBuildOnError" : 1,
