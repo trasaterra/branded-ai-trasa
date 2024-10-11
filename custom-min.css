@@ -1,0 +1,420 @@
+body {
+  background: #00E2B7;
+  font-family: "neue-haas-unica", sans-serif;
+  color: #2A2363;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+p {
+  line-height: 1.3;
+}
+
+a {
+  text-decoration: none;
+  color: #2A2363;
+}
+
+.home-wrap {
+  scroll-snap-type: y mandatory;
+  position: relative;
+  overflow: hidden;
+}
+
+.fixed-video,
+.fixed-img {
+  -o-object-fit: cover;
+  object-fit: cover;
+  position: fixed;
+  z-index: -2;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+}
+
+.logo-wrapper {
+  text-align: center;
+  margin-top: 25px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+.logo-wrapper .trasaterra-logo {
+  width: 170px;
+  position: relative;
+  z-index: 100000;
+}
+.logo-wrapper.answer-logo-wrapper {
+  z-index: 10000 !important;
+}
+.logo-wrapper.answer-logo-wrapper .trasaterra-logo {
+  width: 75px;
+}
+.logo-wrapper.answer-logo-wrapper .tag {
+  color: #FCFBF8;
+}
+
+.content-wrapper {
+  padding: 0 25px;
+}
+
+.tag {
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+.prompt-link {
+  padding-left: 25px;
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  color: #2A2363;
+}
+
+/* Pseudo-element for the background image with adjusted size */
+.prompt-link::before {
+  content: "";
+  display: block;
+  width: 15px; /* Shrink width to 20px */
+  height: 15px; /* Shrink height to 20px */
+  background-image: url("../img/arrow-right.svg"); /* Your background image */
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 3px; /* Position the pseudo-element at the left of the link */
+  top: 13px;
+  transform: translateY(-50%);
+  /* Change the rotation center to the center-left (compass dial effect) */
+  transform-origin: center left; /* Adjust this point as needed */
+}
+
+/* Keyframes for spinning animation */
+@keyframes spinOnce {
+  0% {
+    transform: translateY(-50%) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-50%) rotate(360deg); /* Full 360 rotation */
+  }
+}
+/* Spin effect triggered by JS */
+.prompt-link.spin-animation::before {
+  animation: spinOnce 0.6s ease-in-out 1;
+  animation-fill-mode: forwards;
+}
+
+.text-prompt-wrapper {
+  position: fixed;
+  bottom: 50px;
+  left: 15px;
+  right: 15px;
+  z-index: 10000;
+}
+
+/* File upload icon (clip icon) */
+.input-group .file-upload-icon {
+  cursor: pointer;
+  background: url("../img/hook.svg") no-repeat center;
+  background-size: 35px 35px;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  left: 5px;
+  top: 30px;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+/* Hidden file input field */
+.input-group input[type=file] {
+  display: none;
+}
+
+/* Submit button with upload icon */
+.input-group .upload-btn {
+  background: url("../img/upload.svg") no-repeat center;
+  background-size: 20px 20px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  border-radius: 25px;
+  position: absolute;
+  right: 15px;
+  bottom: 12px;
+  z-index: 100000;
+  transition: transform 0.2s ease, background 0.2s ease; /* Smooth transition for hover and background change */
+  color: #2A2363; /* Use primary color */
+}
+
+/* Remove focus outline and visual effects on click */
+.input-group .upload-btn:focus {
+  outline: none;
+  box-shadow: none;
+  background: url("../img/anchor.svg") no-repeat center; /* Change to anchor icon on focus */
+  background-size: 20px 20px;
+  background-color: transparent;
+  border: none;
+  color: #2A2363; /* Use primary color */
+}
+
+/* Upload button hover effect: Jump up and down */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0); /* Default position */
+  }
+  50% {
+    transform: translateY(-5px); /* Jump up */
+  }
+}
+.input-group .upload-btn:hover {
+  animation: bounce 0.4s ease infinite; /* Continuous bounce effect on hover */
+}
+
+/* Elastic textarea */
+textarea.form-control {
+  padding-left: 50px; /* Space for icons */
+  padding-right: 50px;
+  padding-top: 18px;
+  padding-bottom: 0;
+  border-radius: 50px !important;
+  resize: none; /* Disable manual resizing */
+  overflow: hidden; /* Hide scrollbars */
+  min-height: 25px; /* Initial height */
+  max-height: 150px !important;
+  transition: height 0.2s ease, outline 0.2s ease, border 0.2s ease; /* Smooth transitions */
+  font-weight: 300;
+  color: #2A2363; /* Text typed in the textarea will use the primary color */
+  border: 1px solid #2A2363; /* Initial border */
+  caret-color: #2A2363; /* Set caret color to match the primary color */
+  overflow: scroll;
+}
+
+/* Change the border (focus stroke), text color, and add an outer stroke on focus */
+textarea.form-control:focus {
+  outline: 0 solid #2A2363; /* Outer stroke without glow */
+  border: 1px solid #2A2363; /* Inner border stroke */
+  color: #2A2363; /* Ensure the text color stays primary during focus */
+  caret-color: #2A2363; /* Ensure caret matches primary color on focus */
+}
+
+.answer-bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #2A2363;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1; /* Make sure it starts fully visible */
+  transition: opacity 1s ease-in-out; /* Smooth transition for fade-in */
+  z-index: -1; /* Ensure it's behind other content */
+}
+
+.answer-window {
+  position: relative;
+  z-index: 1; /* Ensure content is above the background */
+}
+
+.answer-window {
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background-color: #2A2363; /* Fallback color in case the image doesn't load */
+  background-size: cover;
+  background-position: center;
+  background-color: transparent;
+  color: #FCFBF8;
+  transition: background-image 0s, opacity 0.25s ease-in-out; /* Transition for opacity */
+  opacity: 0; /* Start with the element hidden */
+}
+
+.answer-window.fade-in {
+  opacity: 1; /* Fade in to full opacity */
+}
+
+.answer-window::before {
+  content: "";
+  position: absolute;
+  top: -20%; /* Expand the area to avoid blurred edges */
+  right: -20%;
+  bottom: -20%;
+  left: -20%;
+  background-size: 160%; /* Increase background size to "zoom in" further */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat;
+  background-image: var(--background-image);
+  filter: blur(60px); /* Apply the blur */
+  z-index: -1; /* Keep the pseudo-element behind the content */
+}
+
+#answerCarousel {
+  height: 100vh;
+}
+
+/* Using Flexbox on the parent container */
+.parent-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Full viewport height */
+  overflow: hidden;
+}
+
+/* Adjusting the .answer-vertical */
+.answer-vertical {
+  text-align: left; /* Align text left if needed */
+  margin-top: -10rem; /* Adjust this value to fine-tune the vertical centering */
+  padding: 0 50px;
+}
+
+.carousel-indicators {
+  bottom: 200px;
+  text-align: center;
+}
+
+/* Replace the default carousel control icons with custom SVGs */
+.carousel-control-prev-icon {
+  background-image: url("/img/white-arrow-prev.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 3rem;
+  height: 3rem;
+}
+
+.carousel-control-next-icon {
+  background-image: url("/img/white-arrow-next.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 3rem;
+  height: 3rem;
+}
+
+.carousel-control-prev, .carousel-control-next {
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%) translateY(-50px); /* Move up by an additional 50px */
+}
+
+/* Position the arrows exactly 30px from the edges of the browser */
+.carousel-control-prev {
+  left: 5px !important;
+  width: auto; /* Override Bootstrap's default width */
+}
+
+.carousel-control-next {
+  right: 5px !important;
+  width: auto; /* Override Bootstrap's default width */
+}
+
+/* Remove default padding and background to ensure proper positioning */
+.carousel-control-prev,
+.carousel-control-next {
+  padding: 0;
+  background: none; /* Remove any background applied by default */
+}
+
+/* Enhance the fade transition for a smoother effect */
+.carousel-fade .carousel-item {
+  opacity: 0;
+  transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+  visibility: hidden;
+}
+
+/* Ensure the active slide is fully visible */
+.carousel-fade .carousel-item.active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 1;
+}
+
+/* Prevent stacking issues by setting non-active slides to a lower z-index */
+.carousel-fade .carousel-item:not(.active) {
+  z-index: 0;
+}
+
+/* Turn the carousel indicators into rhombus shapes */
+.carousel-indicators [data-bs-target] {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  border: 1px solid white;
+  transform: rotate(45deg);
+  margin: 0 8px;
+  cursor: pointer;
+}
+
+/* Style for the active rhombus indicator */
+.carousel-indicators .active {
+  background-color: white;
+}
+
+/* Style for the slide number */
+.indicator-number {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg); /* Center the text and rotate it upright */
+  color: white;
+  font-size: 12px;
+  text-indent: -1px;
+  z-index: 2; /* Ensure the number appears above the rhombus */
+  pointer-events: none;
+}
+
+/* Style for the active slide number */
+.carousel-indicators .active .indicator-number {
+  color: #2A2363; /* Change text color for the active indicator */
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  /* Styles for small devices */
+}
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  /* Styles for medium devices */
+  #answerCarousel {
+    font-size: 36px;
+  }
+  .carousel-control-prev {
+    left: 30px !important;
+  }
+  .carousel-control-next {
+    right: 30px !important;
+  }
+  .input-group .file-upload-icon {
+    top: 38px;
+    left: 7px;
+  }
+  textarea.form-control {
+    padding-left: 50px; /* Space for icons */
+    padding-right: 50px;
+    padding-top: 25px;
+    padding-bottom: 15px;
+  }
+  .input-group .upload-btn {
+    bottom: 22px;
+  }
+}
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  /* Styles for large devices */
+}
+/* Extra Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  /* Styles for extra large devices */
+}
+/* Extra Extra Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
+  /* Styles for extra extra large devices */
+}
