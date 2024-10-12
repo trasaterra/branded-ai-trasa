@@ -241,3 +241,34 @@ document.addEventListener('DOMContentLoaded', function() {
     };
   }
 });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const fileUploadIcon = document.querySelector('.file-upload-icon');
+  if (fileUploadIcon) {
+    const tooltipText = fileUploadIcon.getAttribute('title');
+    const tooltip = document.createElement('div');
+    tooltip.className = 'custom-tooltip';
+    tooltip.innerHTML = tooltipText;
+    document.body.appendChild(tooltip);
+
+    // Create the Popper.js instance
+    const popperInstance = Popper.createPopper(fileUploadIcon, tooltip, {
+      placement: 'top',
+    });
+
+    // Show the tooltip on mouseover
+    fileUploadIcon.addEventListener('mouseover', () => {
+      tooltip.style.display = 'block';
+      popperInstance.update();
+    });
+
+    // Hide the tooltip on mouseout
+    fileUploadIcon.addEventListener('mouseout', () => {
+      tooltip.style.display = 'none';
+    });
+  }
+});
+
+
+
