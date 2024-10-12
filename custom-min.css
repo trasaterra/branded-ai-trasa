@@ -292,12 +292,12 @@ textarea.form-control:focus {
 /* Adjusting the .answer-vertical */
 .answer-vertical {
   text-align: left; /* Align text left if needed */
-  margin-top: -10rem; /* Adjust this value to fine-tune the vertical centering */
+  margin-top: -12rem; /* Adjust this value to fine-tune the vertical centering */
   padding: 0 50px;
 }
 
 .carousel-indicators {
-  bottom: 200px;
+  bottom: 230px;
   text-align: center;
 }
 
@@ -320,7 +320,7 @@ textarea.form-control:focus {
 
 .carousel-control-prev, .carousel-control-next {
   top: 50%; /* Center vertically */
-  transform: translateY(-50%) translateY(-50px); /* Move up by an additional 50px */
+  transform: translateY(-54%) translateY(-54px); /* Move up by an additional 50px */
 }
 
 /* Position the arrows exactly 30px from the edges of the browser */
@@ -436,4 +436,30 @@ textarea.form-control:focus {
 /* Extra Extra Large devices (larger desktops, 1400px and up) */
 @media (min-width: 1400px) {
   /* Styles for extra extra large devices */
+}
+
+
+@media (max-width: 575px) {
+
+  textarea.form-control {
+    padding-left: 25px; /* Space for icons */
+    padding-right: 50px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    height:80px;
+  }
+  .input-group .upload-btn {
+    bottom: 22px;
+  }
+  .input-group .file-upload-icon {
+    top:27px;
+    display: none;
+  }
+  .input-group .upload-btn {
+    top:7px;
+  }
+  .content-wrapper {
+    margin-top:-50px;
+  }
+
 }

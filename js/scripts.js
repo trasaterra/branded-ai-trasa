@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const logoWrapper = document.querySelector('.answer-logo-wrapper');
   const textarea = document.getElementById('text-input');
   const originalContent = contentWrapper.innerHTML;
+  const logoLink = document.getElementById('logoLink'); // Selecting the logo link by ID
 
   // Initially hide the logo on the landing screen
   if (logoWrapper) {
@@ -88,6 +89,31 @@ document.addEventListener('DOMContentLoaded', function() {
     replaceContentWithCarousel(sentences);
   }
 
+  // Function to restore the initial state
+  function resetToInitialState() {
+    // Restore the original content
+    contentWrapper.innerHTML = originalContent;
+
+    // Clear the textarea input
+    textarea.value = '';
+
+    // Reinitialize the prompt link event listeners
+    initializePromptLinks();
+
+    // Hide the logo wrapper
+    if (logoWrapper) {
+      logoWrapper.style.display = 'none';
+    }
+  }
+
+  // Add event listener to the logo link to reset the page
+  if (logoLink) {
+    logoLink.addEventListener('click', function(event) {
+      event.preventDefault(); // Prevent default link behavior
+      resetToInitialState(); // Call the reset function
+    });
+  }
+
   // Event listener for the submit button
   document.querySelector('.upload-btn').addEventListener('click', () => handleSubmit());
 
@@ -102,19 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Event listener for the Escape key to fully reset the original content and hide the logo
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
-      // Restore the original content
-      contentWrapper.innerHTML = originalContent;
-      
-      // Clear the textarea input
-      textarea.value = '';
-
-      // Reinitialize the prompt link event listeners
-      initializePromptLinks();
-
-      // Hide the logo when Escape is pressed
-      if (logoWrapper) {
-        logoWrapper.style.display = 'none';
-      }
+      resetToInitialState();
     }
   });
 
