@@ -262,11 +262,11 @@ textarea.form-control:focus {
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: #2A2363; /* Fallback background color */
+  background-color: #2A2363;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 1; /* Ensure the background color starts fully visible */
+  opacity: 1; /* Make sure it starts fully visible */
   transition: opacity 0.5s ease-in-out; /* Smooth transition for fade-in */
   z-index: -1; /* Ensure it's behind other content */
 }
@@ -293,12 +293,21 @@ textarea.form-control:focus {
   right: -20%;
   bottom: -20%;
   left: -20%;
+  background-size: 250%;
   background-position: center;
   background-repeat: no-repeat;
   filter: blur(60px); /* Apply the blur effect */
-  z-index: -1; /* Keep the background behind the content */
+  z-index: -1; /* Behind the content */
   transition: opacity 1s ease-in-out;
-  opacity: 0.1; /* Fully visible initially */
+  opacity: 0;
+}
+
+.answer-window::before {
+  background-image: var(--previous-background, none); /* Previous background */
+}
+
+.answer-window::after {
+  background-image: var(--new-background, none); /* New background */
 }
 
 /* Fade-in the new background */
