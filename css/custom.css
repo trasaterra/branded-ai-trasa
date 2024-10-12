@@ -40,17 +40,26 @@ a {
   right: 0;
   z-index: 1;
 }
+
 .logo-wrapper .trasaterra-logo {
   width: 170px;
   position: relative;
   z-index: 100000;
 }
-.logo-wrapper.answer-logo-wrapper {
+
+.answer-logo-wrapper {
+  position: fixed; /* Ensure it stays in a fixed position */
+  top: 20px; /* Adjust these values as needed */
+  left: 20px;
   z-index: 10000 !important;
+  opacity: 1 !important;
+  transition: none !important; /* No transition for opacity */
 }
+
 .logo-wrapper.answer-logo-wrapper .trasaterra-logo {
   width: 75px;
 }
+
 .logo-wrapper.answer-logo-wrapper .tag {
   color: #FCFBF8;
 }
@@ -78,7 +87,7 @@ a {
   display: block;
   width: 15px; /* Shrink width to 20px */
   height: 15px; /* Shrink height to 20px */
-  background-image: url("../img/arrow-right.svg"); /* Your background image */
+  background-image: url("https://trasaterra.github.io/branded-ai-trasa/img/arrow-right.svg"); /* Your background image */
   background-size: contain;
   background-repeat: no-repeat;
   position: absolute;
@@ -112,10 +121,15 @@ a {
   z-index: 10000;
 }
 
+.input-group {
+  position: relative;
+}
+
 /* File upload icon (clip icon) */
 .input-group .file-upload-icon {
+  display: inline-block;
   cursor: pointer;
-  background: url("../img/hook.svg") no-repeat center;
+  background: url("https://trasaterra.github.io/branded-ai-trasa/img/hook.svg") no-repeat center;
   background-size: 35px 35px;
   width: 50px;
   height: 50px;
@@ -123,7 +137,42 @@ a {
   left: 5px;
   top: 30px;
   transform: translateY(-50%);
-  z-index: 10;
+  z-index: 1060;
+}
+
+/* Custom tooltip styling */
+.file-upload-icon::after {
+  content: attr(data-tooltip); /* Use the data-tooltip attribute for the text */
+  position: absolute;
+  top: -10px; /* Position slightly above the icon */
+  left: 100%; /* Align with the right side of the icon */
+  transform: translateY(-100%); /* Move the tooltip upwards */
+  background-color: black;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 12px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  z-index: 1050;
+  margin-left: 8px; /* Space between the icon and the tooltip */
+}
+
+/* Show the tooltip on hover */
+.file-upload-icon:hover::after {
+  opacity: 1;
+}
+
+/* Tooltip arrow styling */
+.file-upload-icon::before {
+  content: "";
+  position: absolute;
+  top: auto;
+  left: calc(100% + 8px); /* Align the arrow horizontally with the tooltip */
+  bottom: -5px; /* Position the arrow just below the tooltip */
+  margin: 10%;
 }
 
 /* Hidden file input field */
@@ -133,7 +182,7 @@ a {
 
 /* Submit button with upload icon */
 .input-group .upload-btn {
-  background: url("../img/upload.svg") no-repeat center;
+  background: url("https://trasaterra.github.io/branded-ai-trasa/img/upload.svg") no-repeat center;
   background-size: 20px 20px;
   width: 40px;
   height: 40px;
@@ -153,7 +202,7 @@ a {
 .input-group .upload-btn:focus {
   outline: none;
   box-shadow: none;
-  background: url("../img/anchor.svg") no-repeat center; /* Change to anchor icon on focus */
+  background: url("https://trasaterra.github.io/branded-ai-trasa/img/anchor.svg") no-repeat center; /* Change to anchor icon on focus */
   background-size: 20px 20px;
   background-color: transparent;
   border: none;
@@ -211,13 +260,8 @@ textarea.form-control:focus {
   background-position: center;
   background-repeat: no-repeat;
   opacity: 1; /* Make sure it starts fully visible */
-  transition: opacity 1s ease-in-out; /* Smooth transition for fade-in */
+  transition: opacity 0.5s ease-in-out; /* Smooth transition for fade-in */
   z-index: -1; /* Ensure it's behind other content */
-}
-
-.answer-window {
-  position: relative;
-  z-index: 1; /* Ensure content is above the background */
 }
 
 .answer-window {
@@ -228,32 +272,45 @@ textarea.form-control:focus {
   left: 0;
   right: 0;
   z-index: 1;
-  background-color: #2A2363; /* Fallback color in case the image doesn't load */
-  background-size: cover;
-  background-position: center;
-  background-color: transparent;
+  background-color: #2A2363; /* Fallback color */
   color: #FCFBF8;
-  transition: background-image 0s, opacity 0.25s ease-in-out; /* Transition for opacity */
-  opacity: 0; /* Start with the element hidden */
+  transition: opacity 0.25s ease-in-out;
 }
 
-.answer-window.fade-in {
-  opacity: 1; /* Fade in to full opacity */
-}
-
-.answer-window::before {
+/* Background layers */
+.answer-window::before,
+.answer-window::after {
   content: "";
   position: absolute;
-  top: -20%; /* Expand the area to avoid blurred edges */
+  top: -20%;
   right: -20%;
   bottom: -20%;
   left: -20%;
-  background-size: 160%; /* Increase background size to "zoom in" further */
-  background-position: center; /* Center the image */
+  background-size: 160%;
+  background-position: center;
   background-repeat: no-repeat;
-  background-image: var(--background-image);
-  filter: blur(60px); /* Apply the blur */
-  z-index: -1; /* Keep the pseudo-element behind the content */
+  filter: blur(60px); /* Apply the blur effect */
+  z-index: -1; /* Behind the content */
+  transition: opacity 1s ease-in-out;
+  opacity: 0;
+}
+
+.answer-window::before {
+  background-image: var(--previous-background, none); /* Previous background */
+}
+
+.answer-window::after {
+  background-image: var(--new-background, none); /* New background */
+}
+
+/* Fade-in the new background */
+.answer-window.fade-in::after {
+  opacity: 1;
+}
+
+/* Fade-out the previous background */
+.answer-window.fade-out::before {
+  opacity: 0;
 }
 
 #answerCarousel {
@@ -272,18 +329,18 @@ textarea.form-control:focus {
 /* Adjusting the .answer-vertical */
 .answer-vertical {
   text-align: left; /* Align text left if needed */
-  margin-top: -10rem; /* Adjust this value to fine-tune the vertical centering */
+  margin-top: -12rem; /* Adjust this value to fine-tune the vertical centering */
   padding: 0 50px;
 }
 
 .carousel-indicators {
-  bottom: 200px;
+  bottom: 230px;
   text-align: center;
 }
 
 /* Replace the default carousel control icons with custom SVGs */
 .carousel-control-prev-icon {
-  background-image: url("/img/white-arrow-prev.svg");
+  background-image: url("https://trasaterra.github.io/branded-ai-trasa/img/white-arrow-prev.svg") !important;
   background-size: contain;
   background-repeat: no-repeat;
   width: 3rem;
@@ -291,7 +348,7 @@ textarea.form-control:focus {
 }
 
 .carousel-control-next-icon {
-  background-image: url("/img/white-arrow-next.svg");
+  background-image: url("https://trasaterra.github.io/branded-ai-trasa/img/white-arrow-next.svg") !important;
   background-size: contain;
   background-repeat: no-repeat;
   width: 3rem;
@@ -300,7 +357,7 @@ textarea.form-control:focus {
 
 .carousel-control-prev, .carousel-control-next {
   top: 50%; /* Center vertically */
-  transform: translateY(-50%) translateY(-50px); /* Move up by an additional 50px */
+  transform: translateY(-54%) translateY(-54px); /* Move up by an additional 50px */
 }
 
 /* Position the arrows exactly 30px from the edges of the browser */
@@ -416,4 +473,26 @@ textarea.form-control:focus {
 /* Extra Extra Large devices (larger desktops, 1400px and up) */
 @media (min-width: 1400px) {
   /* Styles for extra extra large devices */
+}
+@media (max-width: 575px) {
+  textarea.form-control {
+    padding-left: 25px; /* Space for icons */
+    padding-right: 50px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    height: 80px;
+  }
+  .input-group .upload-btn {
+    bottom: 22px;
+  }
+  .input-group .file-upload-icon {
+    top: 27px;
+    display: none;
+  }
+  .input-group .upload-btn {
+    top: 7px;
+  }
+  .content-wrapper {
+    margin-top: -50px;
+  }
 }

@@ -139,16 +139,49 @@ a {
 }
 
 
-.custom-tooltip {
-  background-color: black;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 4px;
+/* Custom tooltip styling */
+.file-upload-icon::after {
+  content: attr(data-tooltip); /* Use the data-tooltip attribute for the text */
   position: absolute;
+  top: 0; /* Position slightly above the icon */
+  left: 100%; /* Align with the right side of the icon */
+  transform: translateY(-100%); /* Move the tooltip upwards */
+  background-color: #2A2363;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 20px;
+  white-space: nowrap;
+  font-size: 12px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
   z-index: 1050;
-  display: none;
+  margin-left: -50px; /* Space between the icon and the tooltip */
 }
 
+/* Show the tooltip on hover */
+.file-upload-icon:hover::after {
+  opacity: 1;
+}
+
+/* Tooltip arrow styling */
+.file-upload-icon::before {
+  content: "";
+  position: absolute;
+  bottom: 40px; /* Attach the arrow to the bottom of the tooltip */
+  left: 50%; /* Center the arrow horizontally */
+  transform: translateX(-50%); /* Center align the arrow */
+  border-width: 5px;
+  border-style: solid;
+  border-color: #2A2363 transparent transparent transparent; /* Arrow pointing down */
+  opacity: 0;
+  transition: all 0.2s;
+}
+
+.file-upload-icon:hover::before {
+  opacity: 1;
+  transition: all 0.2s;
+}
 
 
 /* Hidden file input field */
@@ -264,7 +297,7 @@ textarea.form-control:focus {
   right: -20%;
   bottom: -20%;
   left: -20%;
-  background-size: 160%;
+  background-size: 250%;
   background-position: center;
   background-repeat: no-repeat;
   filter: blur(60px); /* Apply the blur effect */
@@ -457,14 +490,14 @@ textarea.form-control:focus {
 }
 
 
-@media (max-width: 575px) {
+@media (max-width: 666px) {
 
   textarea.form-control {
     padding-left: 25px; /* Space for icons */
     padding-right: 50px;
     padding-top: 15px;
     padding-bottom: 15px;
-    height:80px;
+    height:60px;
   }
   .input-group .upload-btn {
     bottom: 22px;
