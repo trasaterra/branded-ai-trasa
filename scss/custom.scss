@@ -315,21 +315,10 @@ textarea.form-control:focus {
   filter: blur(60px); /* Apply the blur effect */
   z-index: -1; /* Keep the background behind the content */
   transition: opacity 1s ease-in-out;
-  opacity: 1; /* Fully visible initially */
+  opacity: .1; /* Fully visible initially */
 }
 
-/* Semi-transparent background image */
-.answer-window::before {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('path/to/your/previous-image.jpg'); /* Overlay with transparency */
-  background-size: cover;
-  opacity: 0.5; /* Control the overall opacity */
-}
 
-.answer-window::after {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('path/to/your/new-image.jpg'); /* Overlay with transparency */
-  background-size: cover;
-  opacity: 0.5; /* Control the overall opacity */
-}
 
 /* Fade-in the new background */
 .answer-window.fade-in::after {
