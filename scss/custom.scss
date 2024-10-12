@@ -12,9 +12,9 @@ $unica: "neue-haas-unica", sans-serif;
 
 
 body {
-  background: #00E2B7;
-  font-family: "neue-haas-unica", sans-serif;
-  color: #2A2363;
+  background: $green;
+  font-family: $unica;
+  color: $primary;
   font-size: 20px;
   font-weight: 300;
 }
@@ -25,7 +25,7 @@ p {
 
 a {
   text-decoration: none;
-  color: #2A2363;
+  color: $primary;
 }
 
 .home-wrap {
@@ -53,10 +53,20 @@ a {
   right: 0;
   z-index: 1;
 }
-.logo-wrapper .trasaterra-logo {
-  width: 170px;
-  position: relative;
-  z-index: 100000;
+.logo-wrapper {
+   .trasaterra-logo {
+    width: 170px;
+    position: relative;
+    z-index: 100000;
+  }
+  &.answer-logo-wrapper {
+    .trasaterra-logo {
+      width: 75px;
+    }
+    .tag {
+      color: $beige;
+    }
+  }
 }
 .answer-logo-wrapper {
   position: fixed; /* Ensure it stays in a fixed position */
@@ -65,13 +75,6 @@ a {
   z-index: 10000 !important;
   opacity: 1 !important;
   transition: none !important; /* No transition for opacity */
-}
-
-.logo-wrapper.answer-logo-wrapper .trasaterra-logo {
-  width: 75px;
-}
-.logo-wrapper.answer-logo-wrapper .tag {
-  color: #FCFBF8;
 }
 
 .content-wrapper {
@@ -155,20 +158,20 @@ a {
 .file-upload-icon::after {
   content: attr(data-tooltip); /* Use the data-tooltip attribute for the text */
   position: absolute;
-  top: -10px; /* Position slightly above the icon */
+  top: 0; /* Position slightly above the icon */
   left: 100%; /* Align with the right side of the icon */
   transform: translateY(-100%); /* Move the tooltip upwards */
-  background-color: black;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 4px;
+  background-color: #2A2363;
+  color: $white;
+  padding: 10px 15px;
+  border-radius: 20px;
   white-space: nowrap;
   font-size: 12px;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s;
   z-index: 1050;
-  margin-left: 8px; /* Space between the icon and the tooltip */
+  margin-left: -50px; /* Space between the icon and the tooltip */
 }
 
 /* Show the tooltip on hover */
@@ -180,12 +183,20 @@ a {
 .file-upload-icon::before {
   content: "";
   position: absolute;
-  top: auto;
-  left: calc(100% + 8px); /* Align the arrow horizontally with the tooltip */
-  bottom: -5px; /* Position the arrow just below the tooltip */
-  margin:10%;
+  bottom: 40px; /* Attach the arrow to the bottom of the tooltip */
+  left: 50%; /* Center the arrow horizontally */
+  transform: translateX(-50%); /* Center align the arrow */
+  border-width: 5px;
+  border-style: solid;
+  border-color: $primary transparent transparent transparent; /* Arrow pointing down */
+  opacity: 0;
+  transition: all 0.2s;
 }
 
+.file-upload-icon:hover::before {
+  opacity: 1;
+  transition: all 0.2s;
+}
 
 
 /* Hidden file input field */
@@ -208,7 +219,7 @@ a {
   bottom: 12px;
   z-index: 100000;
   transition: transform 0.2s ease, background 0.2s ease; /* Smooth transition for hover and background change */
-  color: #2A2363; /* Use primary color */
+  color: $primary; /* Use primary color */
 }
 
 /* Remove focus outline and visual effects on click */
@@ -219,7 +230,7 @@ a {
   background-size: 20px 20px;
   background-color: transparent;
   border: none;
-  color: #2A2363; /* Use primary color */
+  color: $primary; /* Use primary color */
 }
 
 /* Upload button hover effect: Jump up and down */
@@ -248,18 +259,18 @@ textarea.form-control {
   max-height: 150px !important;
   transition: height 0.2s ease, outline 0.2s ease, border 0.2s ease; /* Smooth transitions */
   font-weight: 300;
-  color: #2A2363; /* Text typed in the textarea will use the primary color */
-  border: 1px solid #2A2363; /* Initial border */
-  caret-color: #2A2363; /* Set caret color to match the primary color */
+  color: $primary; /* Text typed in the textarea will use the primary color */
+  border: 1px solid $primary; /* Initial border */
+  caret-color: $primary; /* Set caret color to match the primary color */
   overflow: scroll;
 }
 
 /* Change the border (focus stroke), text color, and add an outer stroke on focus */
 textarea.form-control:focus {
-  outline: 0 solid #2A2363; /* Outer stroke without glow */
-  border: 1px solid #2A2363; /* Inner border stroke */
-  color: #2A2363; /* Ensure the text color stays primary during focus */
-  caret-color: #2A2363; /* Ensure caret matches primary color on focus */
+  outline: 0 solid $primary; /* Outer stroke without glow */
+  border: 1px solid $primary; /* Inner border stroke */
+  color: $primary; /* Ensure the text color stays primary during focus */
+  caret-color: $primary; /* Ensure caret matches primary color on focus */
 }
 
 .answer-bg {
@@ -268,16 +279,14 @@ textarea.form-control:focus {
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: #2A2363;
+  background-color: $primary; /* Fallback background color */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 1; /* Make sure it starts fully visible */
-  transition: opacity .5s ease-in-out; /* Smooth transition for fade-in */
+  opacity: 1; /* Ensure the background color starts fully visible */
+  transition: opacity 0.5s ease-in-out; /* Smooth transition for fade-in */
   z-index: -1; /* Ensure it's behind other content */
 }
-
-
 
 .answer-window {
   position: fixed;
@@ -287,8 +296,8 @@ textarea.form-control:focus {
   left: 0;
   right: 0;
   z-index: 1;
-  background-color: #2A2363; /* Fallback color */
-  color: #FCFBF8;
+  background-color: $primary; /* Fallback color */
+  color: $beige;
   transition: opacity 0.25s ease-in-out;
 }
 
@@ -301,21 +310,25 @@ textarea.form-control:focus {
   right: -20%;
   bottom: -20%;
   left: -20%;
-  background-size: 160%;
   background-position: center;
   background-repeat: no-repeat;
   filter: blur(60px); /* Apply the blur effect */
-  z-index: -1; /* Behind the content */
+  z-index: -1; /* Keep the background behind the content */
   transition: opacity 1s ease-in-out;
-  opacity: 0;
+  opacity: 1; /* Fully visible initially */
 }
 
+/* Semi-transparent background image */
 .answer-window::before {
-  background-image: var(--previous-background, none); /* Previous background */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('path/to/your/previous-image.jpg'); /* Overlay with transparency */
+  background-size: cover;
+  opacity: 0.5; /* Control the overall opacity */
 }
 
 .answer-window::after {
-  background-image: var(--new-background, none); /* New background */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('path/to/your/new-image.jpg'); /* Overlay with transparency */
+  background-size: cover;
+  opacity: 0.5; /* Control the overall opacity */
 }
 
 /* Fade-in the new background */
@@ -327,6 +340,7 @@ textarea.form-control:focus {
 .answer-window.fade-out::before {
   opacity: 0;
 }
+
 
 
 
@@ -429,7 +443,7 @@ textarea.form-control:focus {
 
 /* Style for the active rhombus indicator */
 .carousel-indicators .active {
-  background-color: white;
+  background-color: $white;
 }
 
 /* Style for the slide number */
@@ -438,7 +452,7 @@ textarea.form-control:focus {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(-45deg); /* Center the text and rotate it upright */
-  color: white;
+  color: $white;
   font-size: 12px;
   text-indent: -1px;
   z-index: 2; /* Ensure the number appears above the rhombus */
@@ -447,7 +461,7 @@ textarea.form-control:focus {
 
 /* Style for the active slide number */
 .carousel-indicators .active .indicator-number {
-  color: #2A2363; /* Change text color for the active indicator */
+  color: $primary; /* Change text color for the active indicator */
 }
 
 /* Small devices (landscape phones, 576px and up) */
@@ -494,14 +508,14 @@ textarea.form-control:focus {
 }
 
 
-@media (max-width: 575px) {
+@media (max-width: 666px) {
 
   textarea.form-control {
     padding-left: 25px; /* Space for icons */
     padding-right: 50px;
     padding-top: 15px;
     padding-bottom: 15px;
-    height:80px;
+    height:60px;
   }
   .input-group .upload-btn {
     bottom: 22px;
